@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<meta charset="UTF-8">
+<title>환율 계산기</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+<body onload="retrieveExchange()">
+
+<div class="container">
+    <h1>환율 계산</h1>
+    <br/>
+    <p>송금국가: 미국(USD)</p>
+    <p>수취국가:
+        <select id="destination" onchange="retrieveExchange()">
+            <option th:value="'KRW'" th:text="|한국 (KRW)|"></option>
+            <option th:value="'JPY'" th:text="|일본 (JPY)|"></option>
+            <option th:value="'PHP'" th:text="|필리핀 (PHP)|"></option>
+        </select>
+    </p>
+    <p id="exchangeRate"></p>
+    <input type="hidden" id="_exchangeRate"/>
+
+    <p>송금액:
+        <input type="number" id="transferAmount" value="0"/>
+    </p>
+    <input type="button" value="계산하기" onclick="calculate()"/>
+
+    <br/>
+    <h2 id="result"></h2>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script src="/js/app/index.js"></script>
+</div>
+</body>
+</html>
