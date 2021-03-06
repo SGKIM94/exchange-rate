@@ -3,8 +3,6 @@ package com.woowahan.currency.dto;
 import lombok.Builder;
 import lombok.NoArgsConstructor;
 
-import java.math.BigDecimal;
-
 @NoArgsConstructor
 public class QuotesDto {
     private double USDKRW;
