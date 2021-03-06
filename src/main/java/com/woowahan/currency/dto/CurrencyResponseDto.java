@@ -1,5 +1,6 @@
 package com.woowahan.currency.dto;
 
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -8,12 +9,13 @@ import lombok.NoArgsConstructor;
 public class CurrencyResponseDto implements ClientResponseDto {
     private boolean success;
     private String source;
-    private QuotesDto quotesDto;
+    private QuotesDto quotes;
 
-    public CurrencyResponseDto(boolean success, String source, QuotesDto quotesDto) {
+    @Builder
+    public CurrencyResponseDto(boolean success, String source, QuotesDto quotes) {
         this.success = success;
         this.source = source;
-        this.quotesDto = quotesDto;
+        this.quotes = quotes;
     }
 
     @Override
@@ -21,7 +23,7 @@ public class CurrencyResponseDto implements ClientResponseDto {
         return "CurrencyResponseDto{" +
                 "success=" + success +
                 ", source='" + source + '\'' +
-                ", quotesDto=" + quotesDto +
+                ", quotes=" + quotes +
                 '}';
     }
 }
