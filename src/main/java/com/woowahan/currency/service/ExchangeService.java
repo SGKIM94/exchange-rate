@@ -8,8 +8,6 @@ import com.woowahan.currency.properties.ExchangeApiProperty;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
-import static com.woowahan.currency.domain.Countries.*;
-
 @Slf4j
 @Service
 public class ExchangeService {
@@ -22,20 +20,7 @@ public class ExchangeService {
     }
 
     public CalculateRecipientResponseDto calculateRecipientAmount(CalculateRecipientRequestDto request) {
-        CurrencyResponseDto currencyResponse = retrieveExchanges();
-
-        if (request.getRecipientCountry().equals(KRW)) {
-            return CalculateRecipientResponseDto
-                    .toDto(currencyResponse.getQuotes().getUSDKRW() * request.getTransferAmount());
-        } else if (request.getRecipientCountry().equals(JPY)) {
-            return CalculateRecipientResponseDto
-                    .toDto(currencyResponse.getQuotes().getUSDJPY() * request.getTransferAmount());
-        } else if (request.getRecipientCountry().equals(PHP)) {
-            return CalculateRecipientResponseDto
-                    .toDto(currencyResponse.getQuotes().getUSDPHP() * request.getTransferAmount());
-        }
-
-        throw new IllegalArgumentException("잘못된 수취국가입니다.");
+        return CalculateRecipientResponseDto.toDto(request.getExchangeRate() * request.getTransferAmount());
     }
 
     public CurrencyResponseDto retrieveExchanges() {
