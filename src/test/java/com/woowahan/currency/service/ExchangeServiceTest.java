@@ -13,7 +13,6 @@ import org.mockito.Mock;
 import org.mockito.Spy;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-import static com.woowahan.currency.domain.Countries.KRW;
 import static com.woowahan.currency.domain.Countries.USD;
 import static com.woowahan.currency.fixture.ExchangeFixture.TEST_CURRENCY;
 import static com.woowahan.currency.fixture.ExchangeFixture.TEST_USD_KRW;
@@ -51,19 +50,13 @@ class ExchangeServiceTest {
     @Test
     @DisplayName("환율을 조회하여 수취금액을 계산한다")
     void calculateRecipientAmount_test() {
-        when(exchangeApiClient.retrieve(any())).thenReturn(TEST_CURRENCY);
-
         CalculateRecipientRequestDto request = CalculateRecipientRequestDto.builder()
-                .recipientCountry(KRW.getName())
+                .exchangeRate(TEST_USD_KRW)
                 .transferAmount(4000)
                 .build();
 
         CalculateRecipientResponseDto response = exchangeService.calculateRecipientAmount(request);
 
         assertThat(response.getRecipientAmount()).isEqualTo(TEST_USD_KRW * request.getTransferAmount());
-
-        verify(exchangeApiClient).retrieve(any());
-        verify(exchangeApiProperty).getUrl();
-        verify(exchangeService).retrieveExchanges();
     }
 }
