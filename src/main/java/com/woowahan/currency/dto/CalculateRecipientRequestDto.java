@@ -5,11 +5,11 @@ import lombok.NoArgsConstructor;
 
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
-import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 
 @NoArgsConstructor
 public class CalculateRecipientRequestDto {
-    @NotEmpty(message = "환율이 존재하지 않습니다")
+    @NotNull(message = "환율이 존재하지 않습니다")
     private double exchangeRate;
 
     @Max(value = 10000, message = "송금액이 바르지 않습니다")
