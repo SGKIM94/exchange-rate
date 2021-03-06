@@ -19,7 +19,7 @@ class ExchangeApiPropertyTest {
 
     @Test
     @DisplayName("환율정보를 조회하기 위한 API의 URL 을 가져온다")
-    void getExchangeApiUrl() {
+    void get_exchange_url_test() {
         String url = property.getUrl();
 
         assertThat(url).isEqualTo("http://www.apilayer.net/api/live?access_key=ee50cd7cc73c9b7a7bb3d9617cfb6b9c");
