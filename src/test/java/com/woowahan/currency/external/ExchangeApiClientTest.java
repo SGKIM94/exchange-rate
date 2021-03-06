@@ -3,6 +3,7 @@ package com.woowahan.currency.external;
 import com.woowahan.currency.dto.CurrencyResponseDto;
 import com.woowahan.currency.dto.QuotesDto;
 import com.woowahan.currency.properties.ExchangeApiProperty;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +24,7 @@ class ExchangeApiClientTest {
     private ExchangeApiProperty property;
 
     @Test
+    @DisplayName("환율정보를 currencycylayer를 통해 가져온다")
     void retrieve_test() {
         CurrencyResponseDto response = exchangeApiClient.retrieve(property.getUrl());
 
