@@ -1,8 +1,6 @@
 package com.woowahan.currency.service;
 
-import com.woowahan.currency.dto.CalculateRecipientRequestDto;
-import com.woowahan.currency.dto.CalculateRecipientResponseDto;
-import com.woowahan.currency.dto.CurrencyResponseDto;
+import com.woowahan.currency.dto.*;
 import com.woowahan.currency.external.ExchangeApiClient;
 import com.woowahan.currency.properties.ExchangeApiProperty;
 import org.junit.jupiter.api.DisplayName;
@@ -13,9 +11,9 @@ import org.mockito.Mock;
 import org.mockito.Spy;
 import org.mockito.junit.jupiter.MockitoExtension;
 
+import static com.woowahan.currency.domain.Countries.KRW;
 import static com.woowahan.currency.domain.Countries.USD;
-import static com.woowahan.currency.fixture.ExchangeFixture.TEST_CURRENCY;
-import static com.woowahan.currency.fixture.ExchangeFixture.TEST_USD_KRW;
+import static com.woowahan.currency.fixture.ExchangeFixture.*;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.verify;
@@ -38,10 +36,11 @@ class ExchangeServiceTest {
     void retrieveExchanges_test() {
         when(exchangeApiClient.retrieve(any())).thenReturn(TEST_CURRENCY);
 
-        CurrencyResponseDto response = exchangeService.retrieveExchanges();
+        RetrieveExchangeResponseDto currency = exchangeService.retrieveExchanges(USD.getName(), KRW.getName());
+        FormattedQuote formatQuote = currency.getQuote();
 
-        assertThat(response.isSuccess()).isTrue();
-        assertThat(response.getSource()).isEqualTo(USD.getName());
+        assertThat(currency.getSource()).isEqualTo(USD.getName());
+        assertThat(formatQuote.getValue()).isEqualTo(TEST_FORMATTED_USD_KRW);
 
         verify(exchangeApiClient).retrieve(any());
         verify(exchangeApiProperty).getUrl();
@@ -57,6 +56,7 @@ class ExchangeServiceTest {
 
         CalculateRecipientResponseDto response = exchangeService.calculateRecipientAmount(request);
 
-        assertThat(response.getRecipientAmount()).isEqualTo(TEST_USD_KRW * request.getTransferAmount());
+        assertThat(response.getRecipientAmount())
+                .isEqualTo(new FormattedQuote(TEST_USD_KRW * request.getTransferAmount()));
     }
 }
