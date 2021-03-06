@@ -22,8 +22,7 @@ public class ExchangeApiClient implements ApiClient {
     public CurrencyResponseDto retrieve(String url) {
         URI uri = URI.create(url);
 
-        CurrencyResponseDto response = restTemplate.getForEntity(uri, CurrencyResponseDto.class)
-                .getBody();
+        CurrencyResponseDto response = restTemplate.getForEntity(uri, CurrencyResponseDto.class).getBody();
 
         if (response == null) {
             throw new NotAcceptableStatusException("환율정보를 조회 시 응답을 받지 못하였습니다.");
