@@ -5,11 +5,11 @@ import lombok.NoArgsConstructor;
 
 @NoArgsConstructor
 public class CalculateRecipientResponseDto {
-    private double recipientAmount;
+    private FormattedQuote recipientAmount;
 
     @Builder
     public CalculateRecipientResponseDto(double recipientAmount) {
-        this.recipientAmount = recipientAmount;
+        this.recipientAmount = new FormattedQuote(recipientAmount);
     }
 
     public static CalculateRecipientResponseDto toDto(double recipientAmount) {
@@ -18,7 +18,7 @@ public class CalculateRecipientResponseDto {
                 .build();
     }
 
-    public double getRecipientAmount() {
+    public FormattedQuote getRecipientAmount() {
         return recipientAmount;
     }
 }
