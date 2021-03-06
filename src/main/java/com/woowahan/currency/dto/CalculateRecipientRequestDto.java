@@ -6,10 +6,10 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class CalculateRecipientRequestDto {
     private String recipientCountry;
-    private double transferAmount;
+    private int transferAmount;
 
     @Builder
-    public CalculateRecipientRequestDto(String recipientCountry, double transferAmount) {
+    public CalculateRecipientRequestDto(String recipientCountry, int transferAmount) {
         this.recipientCountry = recipientCountry;
         this.transferAmount = transferAmount;
     }
