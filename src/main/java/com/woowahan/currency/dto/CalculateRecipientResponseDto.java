@@ -5,14 +5,20 @@ import lombok.NoArgsConstructor;
 
 @NoArgsConstructor
 public class CalculateRecipientResponseDto {
-    private String recipientAmount;
+    private double recipientAmount;
 
     @Builder
-    public CalculateRecipientResponseDto(String recipientAmount) {
+    public CalculateRecipientResponseDto(double recipientAmount) {
         this.recipientAmount = recipientAmount;
     }
 
-    public String getRecipientAmount() {
+    public static CalculateRecipientResponseDto toDto(double recipientAmount) {
+        return CalculateRecipientResponseDto.builder()
+                .recipientAmount(recipientAmount)
+                .build();
+    }
+
+    public double getRecipientAmount() {
         return recipientAmount;
     }
 }
