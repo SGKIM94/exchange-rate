@@ -1,6 +1,7 @@
 package com.woowahan.currency.external;
 
 import com.woowahan.currency.dto.CurrencyResponseDto;
+import com.woowahan.currency.dto.QuotesDto;
 import com.woowahan.currency.properties.ExchangeApiProperty;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -25,7 +26,12 @@ class ExchangeApiClientTest {
     void retrieve_test() {
         CurrencyResponseDto response = exchangeApiClient.retrieve(property.getUrl());
 
+        QuotesDto quotes = response.getQuotes();
+
         assertThat(response.isSuccess()).isTrue();
         assertThat(response.getSource()).isEqualTo(USD.getName());
+        assertThat(quotes.getUSDJPY()).isNotNull();
+        assertThat(quotes.getUSDKRW()).isNotNull();
+        assertThat(quotes.getUSDPHP()).isNotNull();
     }
 }
