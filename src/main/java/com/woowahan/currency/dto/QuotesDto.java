@@ -1,28 +1,32 @@
 package com.woowahan.currency.dto;
 
+import lombok.Builder;
 import lombok.NoArgsConstructor;
+
+import java.math.BigDecimal;
 
 @NoArgsConstructor
 public class QuotesDto {
-    private String USDKRW;
-    private String USDJPY;
-    private String USDPHP;
+    private double USDKRW;
+    private double USDJPY;
+    private double USDPHP;
 
-    public QuotesDto(String USDKRW, String USDJPY, String USDPHP) {
+    @Builder
+    public QuotesDto(double USDKRW, double USDJPY, double USDPHP) {
         this.USDKRW = USDKRW;
         this.USDJPY = USDJPY;
         this.USDPHP = USDPHP;
     }
 
-    public String getUSDKRW() {
+    public double getUSDKRW() {
         return USDKRW;
     }
 
-    public String getUSDJPY() {
+    public double getUSDJPY() {
         return USDJPY;
     }
 
-    public String getUSDPHP() {
+    public double getUSDPHP() {
         return USDPHP;
     }
 }
