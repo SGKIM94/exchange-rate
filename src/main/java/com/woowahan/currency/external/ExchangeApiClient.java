@@ -1,7 +1,6 @@
 package com.woowahan.currency.external;
 
 import com.woowahan.currency.dto.CurrencyResponseDto;
-import com.woowahan.currency.service.ApiClient;
 import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;

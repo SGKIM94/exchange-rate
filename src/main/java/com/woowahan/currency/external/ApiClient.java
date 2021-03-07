@@ -1,4 +1,4 @@
-package com.woowahan.currency.service;
+package com.woowahan.currency.external;
 
 import com.woowahan.currency.dto.ClientResponseDto;
 
