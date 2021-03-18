@@ -1,5 +1,6 @@
 package com.woowahan.currency.service;
 
+import com.woowahan.currency.domain.Countries;
 import com.woowahan.currency.dto.CalculateRecipientRequestDto;
 import com.woowahan.currency.dto.CalculateRecipientResponseDto;
 import com.woowahan.currency.dto.CurrencyResponseDto;
@@ -24,14 +25,14 @@ public class ExchangeService {
         return CalculateRecipientResponseDto.toDto(request.getExchangeRate() * request.getTransferAmount());
     }
 
-    public RetrieveExchangeResponseDto retrieveExchanges(String source, String destination) {
+    public RetrieveExchangeResponseDto retrieveExchanges(Countries source, Countries destination) {
         String url = makeExchangeUrl(apiProperty.getUrl(), source, destination);
         CurrencyResponseDto retrieve = exchangeApiClient.retrieve(url);
 
         return RetrieveExchangeResponseDto.toDto(retrieve, source, destination);
     }
 
-    private String makeExchangeUrl(String url, String source, String destination) {
-        return url + "&source=" + source + "&currencies=" + destination;
+    private String makeExchangeUrl(String url, Countries source, Countries destination) {
+        return url + "&source=" + source.getName() + "&currencies=" + destination.getName();
     }
 }

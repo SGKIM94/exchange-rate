@@ -1,6 +1,7 @@
 package com.woowahan.currency.dto;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.woowahan.currency.domain.Countries;
 import lombok.Builder;
 import lombok.NoArgsConstructor;
 
@@ -32,8 +33,8 @@ public class CurrencyResponseDto implements ClientResponseDto {
     }
 
     @JsonIgnore
-    Double getQuote(String source, String destination) {
-        return quotes.get(source + destination);
+    Double getQuote(Countries source, Countries destination) {
+        return quotes.get(source.getName() + destination.getName());
     }
 
 
