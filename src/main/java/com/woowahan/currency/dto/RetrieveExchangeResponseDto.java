@@ -1,5 +1,6 @@
 package com.woowahan.currency.dto;
 
+import com.woowahan.currency.domain.Countries;
 import lombok.Builder;
 import lombok.NoArgsConstructor;
 
@@ -14,7 +15,7 @@ public class RetrieveExchangeResponseDto {
         this.quote = new FormattedQuote(quote);
     }
 
-    public static RetrieveExchangeResponseDto toDto(CurrencyResponseDto currency, String source, String destination) {
+    public static RetrieveExchangeResponseDto toDto(CurrencyResponseDto currency, Countries source, Countries destination) {
         return RetrieveExchangeResponseDto.builder()
                 .source(currency.getSource())
                 .quote(currency.getQuote(source, destination))
