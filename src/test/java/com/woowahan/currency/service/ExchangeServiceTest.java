@@ -36,7 +36,7 @@ class ExchangeServiceTest {
     void retrieveExchanges_test() {
         when(exchangeApiClient.retrieve(any())).thenReturn(TEST_CURRENCY);
 
-        RetrieveExchangeResponseDto currency = exchangeService.retrieveExchanges(USD.getName(), KRW.getName());
+        RetrieveExchangeResponseDto currency = exchangeService.retrieveExchanges(USD, KRW);
         FormattedQuote formatQuote = currency.getQuote();
 
         assertThat(currency.getSource()).isEqualTo(USD.getName());
